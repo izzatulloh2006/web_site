@@ -1,0 +1,111 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>CarBox</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            margin: 0;
+            padding: 0;
+        }
+        header {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            padding: 10px 20px;
+            background-color: #f4f4f4;
+        }
+        .logo {
+            display: flex;
+            align-items: center;
+        }
+        .logo img {
+            width: 50px;
+            height: auto;
+        }
+        .logo h1 {
+            margin: 0 0 0 10px;
+            color: #000;
+            font-size: 24px;
+        }
+        .nav {
+            display: flex;
+            gap: 20px;
+        }
+        .nav a {
+            text-decoration: none;
+            color: #000;
+            font-weight: bold;
+        }
+        .hotline {
+            color: red;
+            font-size: 16px;
+        }
+        .banner {
+            text-align: center;
+            padding: 50px 20px;
+            background-color: #fff;
+        }
+        .banner h1 {
+            color: #000;
+            font-size: 24px;
+            margin: 0;
+        }
+        .banner h2 {
+            color: red;
+            font-size: 20px;
+            margin: 10px 0;
+        }
+        .form {
+            display: flex;
+            justify-content: center;
+            margin-top: 20px;
+        }
+        .form input[type="text"] {
+            padding: 10px;
+            margin: 0 5px;
+            border: 1px solid #ccc;
+            border-radius: 4px;
+        }
+        .form button {
+            padding: 10px 20px;
+            background-color: red;
+            color: #fff;
+            border: none;
+            border-radius: 4px;
+            cursor: pointer;
+        }
+    </style>
+</head>
+<body>
+
+<header>
+    <div class="logo">
+        <img src="logo.png" alt="CarBox Logo">
+        <h1>CarBox</h1>
+    </div>
+    <nav class="nav">
+        <a href="#">О нас</a>
+        <a href="#">Услуги</a>
+        <a href="#">Акции</a>
+        <a href="#">Каталог</a>
+        <a href="#">Контакты</a>
+    </nav>
+    <div class="hotline">телефон горячей линии (71)2000120</div>
+</header>
+
+<div class="banner">
+    <h1>АВТОТЕХЦЕНТР</h1>
+    <h2>СОВРЕМЕННЫЕ ТЕХНОЛОГИИ ОБСЛУЖИВАНИЯ - ГАРАНТИЯ КАЧЕСТВА!</h2>
+    <h2>АКЦИЯ! ДИАГНОСТИКА ХОДОВОЙ ЧАСТИ БЕСПЛАТНО!</h2>
+    <div class="form">
+        <input type="text" placeholder="Имя">
+        <input type="text" placeholder="Телефон">
+        <button>Перезвонить мне</button>
+    </div>
+</div>
+
+</body>
+</html>
