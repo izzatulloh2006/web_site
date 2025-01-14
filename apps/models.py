@@ -4,9 +4,8 @@ from django.utils.translation import gettext_lazy as _
 from django.db.models import (TextChoices, UUIDField, CharField,
                               PositiveIntegerField, BooleanField,
                               ImageField, Model, TextField, IntegerField,
-                              ForeignKey, CASCADE, SmallIntegerField)
+                              ForeignKey, CASCADE, SmallIntegerField, DecimalField, EmailField)
 from django.core.validators import RegexValidator
-
 
 class User(AbstractUser):
     class UserType(TextChoices):
@@ -73,3 +72,25 @@ class React(Model):
     lastname = CharField(max_length=30)
     age = SmallIntegerField(default=0)
 
+
+class Service(Model):
+    title = CharField(max_length=100)
+    description = TextField()
+    price = DecimalField(max_digits=10, decimal_places=2)
+
+    def __str__(self):
+        return self.title
+
+
+class Contacts(Model):
+    name = CharField(max_length=100)
+    phone = CharField(max_length=15)
+    email = EmailField()
+    message = TextField()
+
+    def __str__(self):
+        return self.name
+
+class Profil(Model):
+    id = UUIDField(primary_key=True, default=uuid.uuid4, editable=False)
+    photo = ImageField(upload_to='static/image/7942030.jpg', default='static/image/7942030.jpg', verbose_name=_('Photo'))

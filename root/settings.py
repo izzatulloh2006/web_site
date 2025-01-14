@@ -20,6 +20,7 @@ INSTALLED_APPS = [
     'django.contrib.staticfiles',
     'apps.apps.AppsConfig',
     'rest_framework',
+    'rest_framework_simplejwt',
     'drf_yasg',
     'corsheaders',
 ]
@@ -131,10 +132,10 @@ JAZZMIN_SETTINGS = {
     "site_brand": "AVTOSERVISE UZ",
 
     # Logo to use for your site, must be present in static files, used for brand on top left
-    "site_logo": "images/logo.png",
+    "site_logo": "image/png-image_5821463.png",
 
     # Logo to use for your site, must be present in static files, used for login form logo (defaults to site_logo)
-    "login_logo": "images/logo.png",
+    "login_logo": "image/png-image_5821463.png",
 
     # Logo to use for login form in dark themes (defaults to login_logo)
     "login_logo_dark": None,
@@ -260,3 +261,11 @@ JAZZMIN_SETTINGS = {
     # Add a language dropdown into the admin
     "language_chooser": True,
 }
+
+
+EMAIL_BACKEND = 'django.core.mail.backends.smtp.EmailBackend'
+EMAIL_HOST = 'smtp.gmail.com'
+EMAIL_PORT = 587
+EMAIL_USE_TLS = True
+EMAIL_HOST_USER = 'fayzullaxojaevi@gmail.com'
+EMAIL_HOST_PASSWORD = 'wnxzsnvulsuuhdms'

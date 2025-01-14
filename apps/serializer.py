@@ -2,8 +2,59 @@ from django.contrib.auth.hashers import make_password
 from rest_framework.fields import CharField
 from rest_framework.exceptions import ValidationError
 from rest_framework.serializers import ModelSerializer
-from apps.models import Category, Product, User, React
+from apps.models import Category, Product, User, React, Service, Contacts, Profil
 from rest_framework.permissions import IsAuthenticated
+from rest_framework import serializers
+from django.contrib.auth import authenticate
+
+
+class UserSerializer(serializers.ModelSerializer):
+    class Meta:
+        model = User
+        fields = ['phone_number', 'password', 'first_name', 'last_name']  # Adjust these fields according to your model
+
+    def create(self, validated_data):
+        # Create a new user instance and set the password properly
+        user = User(
+            phone_number=validated_data['phone_number'],
+            first_name=validated_data['first_name'],
+            last_name=validated_data['last_name']
+        )
+        user.set_password(validated_data['password'])  # This is important to properly hash the password
+        user.save()
+        return user
+
+
+
+class LoginSerializer(serializers.Serializer):
+    phone_number = serializers.CharField(required=True)
+    password = serializers.CharField(write_only=True)
+
+    def validate(self, data):
+        phone_number = data.get('phone_number')
+        password = data.get('password')
+
+        if phone_number and password:
+            user = authenticate(username=phone_number, password=password)
+            if user is None:
+                raise serializers.ValidationError("Invalid credentials")
+        else:
+            raise serializers.ValidationError("Must include both phone number and password")
+
+        data['user'] = user
+        return data
+
+
+class ServiceSerializer(ModelSerializer):
+    class Meta:
+        model = Service
+        fields = '__all__'
+
+
+class ContactSerializer(ModelSerializer):
+    class Meta:
+        model = Contacts
+        fields = '__all__'
 
 
 class RegisterModelSerializer(ModelSerializer):
@@ -14,6 +65,7 @@ class RegisterModelSerializer(ModelSerializer):
         fields = 'phone_number', 'password', 'confirm_password', 'first_name', 'last_name'
         extra_kwargs = {
             'password': {'write_only': True}
+
         }
 
     def validate(self, data):
@@ -113,3 +165,9 @@ class ReactSerializer(ModelSerializer):
     class Meta:
         model = React
         fields = ['firstname', 'lastname', 'age']
+
+
+class ProfilUserModelSerializer(ModelSerializer):
+    class Meta:
+        model = Profil
+        fields = '__all__'

@@ -75,12 +75,12 @@ class CustomUserAdmin(UserAdmin):
         def get_queryset(self, request):
             return super().get_queryset(request).filter(type=User.UserType.ADMIN)
 
-        def image_tag(self, obj):
-            if obj.photo:
-                return format_html('<img src="{}" width="50" height="50" />'.format(obj.photo.url))
-            return '-'
+        # def image_tag(self, obj):
+        #     if obj.photo:
+        #         return format_html('<img src="{}" width="50" height="50" />'.format(obj.photo.url))
+        #     return '-'
 
-        image_tag.short_description = 'Image'
+        # image_tag.short_description = 'Image'
 
         def get_course_count(self, obj):
             return obj.course_set.count()
